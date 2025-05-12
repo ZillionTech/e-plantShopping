@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import { useDispatch } from 'react-redux'; 
-import { addItem } from './path/to/CartSlice'; // Adjust the path accordingly
+import { addItem } from './CartSlice'; // Adjust the path accordingly
 import CartItem from './CartItem';
 function ProductList({ onHomeClick }) {
     const dispatch = useDispatch(); // Add this line inside your ProductList component

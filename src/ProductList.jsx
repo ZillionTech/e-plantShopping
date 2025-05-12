@@ -7,6 +7,7 @@ function ProductList({ onHomeClick }) {
     const dispatch = useDispatch(); // Add this line inside your ProductList component
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [addedToCart, setAddedToCart] = useState({});
     const handleAddToCart = (product) => {
         dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action)
        // Define the function to add a plant to the cart
@@ -309,8 +310,7 @@ function ProductList({ onHomeClick }) {
             className="product-button"
             onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
           >
-            Add to Cart
-            const [addedToCart, setAddedToCart] = useState({});
+           
           </button>
         </div>
       ))}

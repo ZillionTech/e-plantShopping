@@ -9,8 +9,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- const calculateTotalAmount = (cart) => {
-  let total = 0;
+    let total = 0;
+    cart.forEach(item => {
+      const price = parseFloat(item.cost.replace(/[^0-9.-]+/g, '')); // Remove currency symbols
+      total += item.quantity * price;
+    });
+    return total.toFixed(2);
+  };
+
 
   cart.forEach(item => {
     const quantity = item.quantity;
@@ -21,7 +27,6 @@ const CartItem = ({ onContinueShopping }) => {
   return total.toFixed(2); // Returns total as a string with 2 decimal places
 };
 
-  };
 
   const handleContinueShopping = (e) => {
         e.preventDefault(); // Optional: Prevents any default form behavior if used in a form
@@ -33,11 +38,17 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      dispatch(removeItem(item.name));
+    }
   };
+  
 
   const handleRemove = (item) => {
         dispatch(removeItem(itemName));
@@ -78,7 +89,6 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
     </div>
   );
-};
 
 export default CartItem;
 

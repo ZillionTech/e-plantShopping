@@ -11,13 +11,13 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalAmount = () => {
     let total = 0;
     cart.forEach(item => {
-      const price = parseFloat(item.cost.replace(/[^0-9.-]+/g, '')); // Remove currency symbols
-      total += item.quantity * price;
+      const quantity = item.quantity;
+      const cost = parseFloat(item.cost.toString().replace(/[^0-9.-]+/g, ''));
+      total += quantity * cost;
     });
     return total.toFixed(2);
   };
-
-
+  
   cart.forEach(item => {
     const quantity = item.quantity;
     const cost = parseFloat(item.cost.toString().replace(/[^0-9.-]+/g, '')); // Safely remove $ or any symbol

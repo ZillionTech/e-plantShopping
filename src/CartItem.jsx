@@ -17,23 +17,9 @@ const CartItem = ({ onContinueShopping }) => {
     return total.toFixed(2);
   };
 
-  cart.forEach(item => {
-    const quantity = item.quantity;
-    const cost = parseFloat(item.cost.toString().replace(/[^0-9.-]+/g, '')); // Safely remove $ or any symbol
-    total += quantity * cost;
-  });
-
-  return total.toFixed(2); // Returns total as a string with 2 decimal places
-};
-
-
   const handleContinueShopping = (e) => {
-        e.preventDefault(); // Optional: Prevents any default form behavior if used in a form
-        onContinueShopping(e); // Calls the parent function
-  };
-
-  const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
+    e.preventDefault();
+    onContinueShopping(e);
   };
 
   const handleIncrement = (item) => {
@@ -47,16 +33,14 @@ const CartItem = ({ onContinueShopping }) => {
       dispatch(removeItem(item.name));
     }
   };
-  
 
   const handleRemove = (item) => {
-        dispatch(removeItem(item.name));
+    dispatch(removeItem(item.name));
   };
 
-  // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    const unitPrice = parseFloat(item.cost.substring(1)); // Remove "$" and convert to number
-    return (unitPrice * item.quantity).toFixed(2); // Multiply and format to 2 decimal places
+    const unitPrice = parseFloat(item.cost.substring(1));
+    return (unitPrice * item.quantity).toFixed(2);
   };
 
   return (
@@ -107,8 +91,7 @@ const CartItem = ({ onContinueShopping }) => {
         <button className="get-started-button1">Checkout</button>
       </div>
     </div>
-);
+  );
+};
 
 export default CartItem;
-
-
